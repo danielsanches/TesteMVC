@@ -1,14 +1,61 @@
-﻿@{
+﻿@model MVC.Model.Home.DadosPessoaisModel
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="container-fluid">
     <h3>Pagina Cadastro</h3>
     <hr />
-    <button type="button" class="btn btn-primary">Cadastrar</button>
+
+    @using (Html.BeginForm("Index", "Home"))
+    {
+        <div class="mb-3">
+            <label for="nome">Nome</label>
+            @Html.TextBoxFor(c => c.Nome, new { @class = "form-control" })
+        </div>
+
+        <div class="mb-3">
+            <label for="email">E-mail</label>
+            @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <hr />
+    }
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Ação</th>
+        </tr>
+        @using (Html.BeginForm("Remover", "Home"))
+        {
+
+
+            @foreach (var item in Model.Itens)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Email</td>
+                    <td> <button class="btn btn-danger" type="submit">Remover</button> </td>
+
+                </tr>
+            }
+        }
+    </table>
+
+
+
+
+
+
+
 
 
 </div>
+
+
 
