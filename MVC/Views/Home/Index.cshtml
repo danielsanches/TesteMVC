@@ -8,18 +8,18 @@
     <h3>Pagina Cadastro</h3>
     <hr />
 
-    @using (Html.BeginForm("Index", "Home"))
+    @using (Html.BeginForm("Index", "Home", new { id = "formCadastro" }))
     {
         <div class="mb-3">
             <label for="nome">Nome</label>
             @Html.TextBoxFor(c => c.Nome, new { @class = "form-control" })
         </div>
-
+        <br />
         <div class="mb-3">
             <label for="email">E-mail</label>
             @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
         </div>
-
+        <br />
         <button type="submit" class="btn btn-primary">Cadastrar</button>
         <hr />
     }
@@ -30,32 +30,26 @@
             <th>Email</th>
             <th>Ação</th>
         </tr>
-        @using (Html.BeginForm("Remover", "Home"))
+
+        @foreach (var item in Model.Itens)
         {
+            var formRemoverIndex = "formRemover" + item.Id;
+            var btnEditar = "btnEditar" + item.Id;
 
-
-            @foreach (var item in Model.Itens)
-            {
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Nome</td>
-                    <td>@item.Email</td>
-                    <td> <button class="btn btn-danger" type="submit">Remover</button> </td>
-
-                </tr>
-            }
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Nome</td>
+                <td>@item.Email</td>
+                <td>
+                    @using (Html.BeginForm("Remover", "Home", new { id = formRemoverIndex }))
+                    {
+                        @Html.Hidden("Id", item.Id)
+                        <button class="btn btn-danger" type="submit">Remover</button>
+                    }
+                    <a href="@Url.Action("Editar", "Home", new {id = @item.Id})" id="@btnEditar" class="btn btn-primary">Editar</a>
+                </td>
+            </tr>
         }
     </table>
-
-
-
-
-
-
-
-
-
 </div>
-
-
 

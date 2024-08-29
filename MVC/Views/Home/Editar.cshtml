@@ -1,0 +1,26 @@
+﻿@model MVC.Model.Home.DadosPessoaisModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <h3>Editar Cadastro</h3>
+    <hr />
+
+    @using (Html.BeginForm("Editar", "Home"))
+    {
+        <div class="mb-3">
+            <label for="nome">Nome</label>
+            @Html.TextBoxFor(c => c.Nome, new { @class = "form-control" })
+        </div>
+        <br />
+        <div class="mb-3">
+            <label for="email">E-mail</label>
+            @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
+        </div>
+        <hr />
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    }
+</div>
+

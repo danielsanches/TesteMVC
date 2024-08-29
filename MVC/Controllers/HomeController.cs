@@ -1,5 +1,6 @@
 ﻿using MVC.Model.Home;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace MVC.Controllers
@@ -11,7 +12,7 @@ namespace MVC.Controllers
 
         public ActionResult Index()
         {
-            return View(new DadosPessoaisModel());
+            return View(new DadosPessoaisModel { Itens = listaDados });
         }
 
         [HttpPost]
@@ -21,10 +22,32 @@ namespace MVC.Controllers
             listaDados.Add(dadosPessoaisModel);
             return View(new DadosPessoaisModel { Itens = listaDados });
         }
+
         [HttpPost]
-        public ActionResult Remover()
+        public ActionResult Remover(DadosPessoaisModel dadosPessoaisModel)
         {
-            return View(new DadosPessoaisModel());
+            DadosPessoaisModel registro = listaDados.First(c => c.Id == dadosPessoaisModel.Id);
+            listaDados.Remove(registro);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Editar(int id)
+        {
+            DadosPessoaisModel registro = listaDados.First(c => c.Id == id);
+
+            return View(registro);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(DadosPessoaisModel dadosPessoaisModel)
+        {
+            DadosPessoaisModel registro = listaDados.First(c => c.Id == dadosPessoaisModel.Id);
+
+            registro.Nome = dadosPessoaisModel.Nome;
+            registro.Email = dadosPessoaisModel.Email;
+
+            return RedirectToAction("Index");
         }
     }
 
