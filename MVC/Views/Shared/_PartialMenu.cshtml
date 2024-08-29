@@ -1,0 +1,121 @@
+﻿@using System.Configuration;
+@using Util;
+<style>
+    .dropdown-submenu {
+        position: relative;
+    }
+
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -7px;
+        }
+</style>
+<nav class="navbar navbar-inverse-sgi navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Content("~/Home/BemVindo")"><img src="~/Content/img/brasao.png" style="width:50px; margin:auto; float:left"></a>
+                <a class="navbar-brand brand navbar-right" style="font-size:18px" href="@Url.Content("~/Home/BemVindo")">@System.Configuration.ConfigurationManager.AppSettings["NomeDoSistema"].ToString() &nbsp;&nbsp;</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div class="nav navbar-collapse">
+                    @if (Session["SESSIONUSUARIO"] != null)
+                    {
+                        var dadosUsuario = (string[])Session["SESSIONUSUARIO"];
+
+                        if (TempData["MENUPRINCIPAL"] != null)
+                        {
+                            @MvcHtmlString.Create(TempData["MENUPRINCIPAL"].ToString())
+                        }
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <ul class="nav navbar-nav">
+                                    @if (ViewBag?.ExibirIconeNoticias ?? false)
+                                    {
+                                        <li class="nav-item">
+                                            @{ var mensageTitle = !string.IsNullOrEmpty(ViewBag?.TotalNoticias) ? $"{ViewBag?.TotalNoticias} mensagens(s) não lida(s)" : "Mensagens";}
+                                            @if (!string.IsNullOrEmpty(ViewBag?.TotalNoticias))
+                                            {
+                                                <a href="@Url.Content("~/Home/ExibirNoticias")" class="nav-item" title="@mensageTitle"><i class="fa fa-lg fa-envelope-o faa-pulse faa-slow animated">&nbsp;<label style="font-family:Arial;font-size:small" id="contadorMensagens">@(ViewBag?.TotalNoticias ?? "")</label></i></a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Content("~/Home/ExibirNoticias")" class="nav-item" title="@mensageTitle"><i class="fa fa-lg fa-envelope-o">&nbsp;<label style="font-family:Arial;font-size:small" id="contadorMensagens">@(ViewBag?.TotalNoticias ?? "")</label></i></a>
+                                            }
+                                        </li>
+                                    }
+                                    @if (ConfigurationManager.AppSettings["EXIBIRDOWNLOADMANUAL"].Split(',').Any(c => c.Trim().Equals(Session["GRUPODOWNLOADID"])))
+                                    {
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" role="button" aria-expanded="false" dropdown-menu><span class="fa fa-lg fa-question-circle-o"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="@Funcoes.ObterEnderecoPublicado()/Home/BaixarManual"><i class="fa fa-book"></i> Manual do Sistema</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" id="background-color-sessao" data-toggle="dropdown">
+                                            Sessão:
+                                            <span class="glyphicon glyphicon-time"></span>
+                                            <span data-sessao-timeout></span>
+                                            <b class="caret caret-black"></b>
+                                        </a>
+                                        @*<a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown" role="button" aria-expanded="false" dropdown-menu>&nbsp;&nbsp;Usuário&nbsp;&nbsp;<span class="caret"></span></a>*@
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> Usuário: @dadosUsuario[1]</a></li>
+                                        <li><a href="#"><i class="glyphicon glyphicon-file"></i> Nome: @dadosUsuario[0]</a></li>
+                                        <li><a href="#"><i class="glyphicon glyphicon-list-alt"></i> Unidade: @dadosUsuario[3]</a></li>
+                                        <li><a href="#"><i class="fa fa-users"></i> Grupo: @dadosUsuario[5]</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><i class="glyphicon glyphicon-off"></i>Sair</a></li>
+                                    </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<style>
+    .navbar-brand.brand.navbar-right {
+        padding: 20px;
+    }
+
+    .dropdown-toggle.js-activated {
+        padding: 20px;
+    }
+
+    #background-color-sessao {
+        padding: 20px;
+    }
+
+    .dropdown-toggle.js-activated:hover {
+        background-color: #337AB7;
+    }
+
+    #background-color-sessao:hover {
+        background-color: #337AB7
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $('.dropdown-submenu a.menu').on("mouseover", function (e) {
+            $(this).next('ul').toggle();
+            e.stopPropagation();
+            e.preventDefault();
+        });
+    });
+</script>

@@ -1,0 +1,19 @@
+﻿<footer>
+    <img src="~/Content/img/ugsis_agro_sefaz_bco.png" style="width:600px; margin:auto" alt="GOV" />
+    <br />
+    <br />
+</footer>
+<div id="footer" style="background-color: #0094EA;">
+    <center>
+        <h6 style="color:#FFFFFF">  &#169 @DateTime.Now.Year COTIN - Todos direitos reservados  &nbsp; | &nbsp;  Última Publicação: @HttpContext.Current.Application["BuildDateTime"]</h6>
+    </center>
+</div>
+
+@Scripts.Render("~/Scripts/datepicker/moment-with-locales.js")
+@Scripts.Render("~/bundles/DataTables")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/bootstrapSwitch")
+@Scripts.Render("~/bundles/inputmask")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/sgi")
+@Scripts.Render("~/Scripts/Views/Shared/_PartialFooter.js")

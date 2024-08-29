@@ -1,0 +1,34 @@
+﻿@using Util.Model
+@using Util.Enums
+@using Infra.ViewModel.IncentivosFiscais.Session
+<!DOCTYPE html>
+<head>
+    @RenderPage("~/Views/Shared/_PartialHeader.cshtml")
+    <style>
+        .verySmall {
+            font-size: 9px !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        @RenderPage("~/Views/Shared/_PartialMenu.cshtml")
+    </header>
+    <main class="group" role="main">
+        <div class="container-fluid">
+            <br />
+            <br />
+            <br />
+            @RenderBody()
+        </div>
+
+    </main>
+    @RenderPage("~/Views/Shared/_PartialFooter.cshtml")
+
+    @RenderSection("scripts", required: false)
+</body>
+

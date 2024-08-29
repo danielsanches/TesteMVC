@@ -1,0 +1,118 @@
+﻿<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="content-language" content="pt-BR,pt" />
+<meta name="ROBOTS" content="none" />
+<meta name="description" content="Incentivos Fiscais - Governo do Estado de Mato Grosso do Sul" />
+<meta name="author" content="SGI" />
+<title>Incentivos Fiscais - MS</title>
+
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/css/bootstrapSwitch")
+@Styles.Render("~/Content/DataTables")
+@Styles.Render("~/Content/css/select2")
+@Styles.Render("~/Content/css/awesome")
+@Styles.Render("~/Content/css/awesomeAnimation")
+@Styles.Render("~/Content/css/select2Bootstrap")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/datepicker")
+@Scripts.Render("~/bundles/select2-js")
+<script type="text/javascript" src="~/Scripts/SGI/SessionTimer.js"></script>
+<script type="text/javascript">
+            window.SessionTimer = new SessionTimer("@Url.Action("BemVindo", "Home", new {area = ""})", @Session.Timeout);
+
+            window.SessionTimer.Iniciar();
+
+            //Função que renova a sessão a cada requisição ajax.
+            $(document).ajaxStart(function(){
+                window.SessionTimer.Renovar();
+            });
+</script>
+
+<style>
+    .today {
+        background-color: #eee;
+    }
+
+    .datepicker .active {
+        background-color: #e2f5ff;
+        font-weight: bold;
+    }
+</style>
+
+@{
+    var port = ViewContext.HttpContext.Request.Url.Port != 80 ? (":" + ViewContext.HttpContext.Request.Url.Port) : string.Empty;
+    var url = Url.Content("~/");
+}
+
+<script type="text/javascript">
+    var content = '@url';
+    var area = '@ViewBag.Area';
+    var controller = '@ViewBag.Controller';
+    var action = '@ViewBag.Action ';
+
+    var ajaxUrl = content + area + "/" + controller + "/";
+
+    /* BlockUi Loader */
+    var doBlock = false;
+
+    function ajaxBlockUI() {
+        doBlock = true;
+        setTimeout('BlockUI()', 250);
+    }
+
+    function BlockUI() {
+        if (doBlock == true) {
+            jQuery.blockUI();
+        }
+    }
+
+    function ajaxUnblockUI() {
+
+        doBlock = false;
+        jQuery.unblockUI();
+    }
+
+    jQuery(document).ready(function() {
+        jQuery.blockUI.defaults.message = "<br/> <img alt='X' src='@Url.Content("~/Content/img/preLoader.gif")' /><br /><h4>Aguarde...</h4>";
+        jQuery.blockUI.defaults.css.cursor = "default";
+        jQuery.blockUI.defaults.overlayCSS.cursor = "default";
+
+        $.fn.select2.defaults.set("language", "pt-BR");
+        $("select").select2({
+            width: "100%",
+            placeholder: "Selecione",
+            theme: "bootstrap"
+        });
+
+    }).ajaxStart(ajaxBlockUI).ajaxStop(ajaxUnblockUI);
+    /* FIM BlockUi */
+
+    // Configuração de padrão do datepicker
+    $.extend($.fn.datepicker.defaults, {
+        language: "pt-BR",
+        format: "dd/mm/yyyy",
+        todayHighlight: true,
+        autoclose: true,
+        toggleActive: true
+    });
+</script>
+<style>
+    td.details-control {
+        background: url('@Url.Content("~/Content/img/dataTables/details-open.png")') no-repeat center center;
+        cursor: pointer;
+    }
+
+    tr.shown td.details-control {
+        background: url('@Url.Content("~/Content/img/dataTables/details-close.png")') no-repeat center center;
+    }
+</style>
+
+<!--[if lt IE 9]>
+    <script src="https://www.efazenda.ms.gov.br/templates/js/html5.js"></script>
+<![endif]-->
+<!-- Le fav and touch icons -->
+<link rel="shortcut icon" type="text/css" href="https://www.efazenda.ms.gov.br/templates/images/favicon.jpg" />
