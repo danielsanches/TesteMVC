@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - Views", "00 - Views", "{2F24237F-128F-42D6-97BA-BAA73111B000}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{5779EAF6-8546-46DF-AE67-05BE879AD73A}"
 EndProject
 Global
@@ -29,9 +27,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{5779EAF6-8546-46DF-AE67-05BE879AD73A} = {2F24237F-128F-42D6-97BA-BAA73111B000}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DC4AEF55-FB4E-4AC3-8B16-85AF30C42953}
