@@ -330,11 +330,11 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\BemVindo.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_PartialFooter.cshtml" />
     <Content Include="Views\Shared\_PartialHeader.cshtml" />
     <Content Include="Views\Shared\_PartialMenu.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Desenvolvimento.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
