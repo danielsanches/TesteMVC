@@ -368,28 +368,6 @@ function roundToX(num, X) {
     return +(Math.round(num + "e+" + X) + "e-" + X);
 }
 
-function BuscarCarCCE(ie) {
-
-    $.ajax({
-        url: content + "IncentivosFiscais/IncentivoProdutor/BuscarCar",
-        method: 'POST',
-        data: {
-            ie: ie,
-        },
-        success: function (retorno) {
-            $("#divCar").show();
-            if (retorno.Status === eStatus.Ok) {
-                $("#Car").val(retorno.Redirect);
-                LoadDadosPropriedade(ie);
-            }
-            else {
-                exibirMensagens(retorno.Mensagens);
-                $("#Car").removeAttr("readonly");
-                $("#botaoBuscar").show();
-            }
-        }
-    });
-}
 
 function ObterParametrosDoFormularioComAnexo(form) {
     formData = new FormData()
