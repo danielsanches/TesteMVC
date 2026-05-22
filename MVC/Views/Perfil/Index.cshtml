@@ -1,0 +1,45 @@
+﻿@model MVC.Model.Perfil.PerfilViewModel
+@using System.Configuration;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="headSection">
+    <div class="row-fluid">
+        <div class="page-header">
+            <h2>Trocar Perfil</h2>
+        </div>
+    </div>
+</section>
+@using (Html.BeginForm("Index", "Perfil", FormMethod.Post, new { @Id = "frmViewDropdown" }))
+{
+
+    if (Model.PodeTrocarPerfil)
+    {
+        if (Session["TEMPERMISSAONOPERFIL"] != null)
+        {
+            <div class="row">
+                <br />
+                <div class="col-lg-6">
+                    <a href="@Url.Action("Sair", "Home")" class="btn btn-info">Retornar Meu Perfil <i class="icon-white glyphicon-refresh"></i><i class="icon-white glyphicon-user"></i></a>
+                </div>
+            </div>
+        }
+
+        <div class="row">
+            <br />
+            <div class="col-lg-2">
+                <label for="txtPrimeiroAcesso">Login ICMS:</label>
+                <div class="input-group">
+                    @Html.TextBoxFor(c => c.LoginIcms, new { @class = "form-control", id = "LoginIcms" })
+                    <span class="input-group-btn">
+                        <button type="submit" title="Buscar" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                </div>
+                <span class="text-danger" id="erroLoginIcms" style="display:none;">Informe o Login ICMS.</span>
+            </div>
+        </div>
+    }
+}
+@Scripts.Render("~/Scripts/Views/Perfil/Index.js")

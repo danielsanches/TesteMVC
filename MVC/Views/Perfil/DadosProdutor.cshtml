@@ -1,0 +1,63 @@
+﻿@model Infra.ViewModel.IncentivosFiscais.ProdutorVM
+
+<div class="row">
+    <div class="col-sm-4">
+        @Html.Label("Razão Social:")
+        @Html.DisplayTextFor(m => m.RazaoSocial)
+        @Html.HiddenFor(m => m.RazaoSocial)
+    </div>
+    <div class="col-sm-4">
+        @Html.Label("IE:")
+        @Html.DisplayTextFor(m => m.Ie)
+        @Html.HiddenFor(m => m.Ie)
+    </div>
+    <div class="col-sm-4">
+        @Html.Label("CPF/CNPJ:")
+        @Html.DisplayTextFor(m => m.CpfCnpj)
+        @Html.HiddenFor(m => m.CpfCnpj)
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-sm-4">
+        @Html.LabelFor(m => m.Logradouro):
+        @Html.DisplayTextFor(m => m.Logradouro)
+        @Html.HiddenFor(m => m.Logradouro)
+    </div>
+    <div class="col-sm-4">
+        @Html.Label("Número:")
+        @Html.DisplayTextFor(m => m.Numero)
+        @Html.HiddenFor(m => m.Numero)
+    </div>
+    <div class="col-sm-4">
+        @Html.LabelFor(m => m.Bairro):
+        @Html.DisplayTextFor(m => m.Bairro)
+        @Html.HiddenFor(m => m.Bairro)
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-sm-4">
+        @Html.Label("Município:")
+        @Html.DisplayTextFor(m => m.Municipio)
+        @Html.HiddenFor(m => m.Municipio)
+    </div>
+    <div class="col-sm-4">
+        @Html.Label("UF:")
+        @Html.DisplayTextFor(m => m.Uf)
+        @Html.HiddenFor(m => m.Uf)
+    </div>
+    <div class="col-sm-4">
+        @Html.Label("CEP:")
+        @Html.DisplayTextFor(m => m.Cep)
+        @Html.HiddenFor(m => m.Cep)
+    </div>
+</div>
+<hr />
+    <div class="row">
+        <div class="col-sm-4">
+            @Html.LabelFor(m => m.Complemento):
+            @Html.DisplayTextFor(m => m.Complemento)
+            @Html.HiddenFor(m => m.Complemento)
+        </div>
+    </div>
